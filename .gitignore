@@ -43,3 +43,6 @@ next-env.d.ts
 
 # folder
 public/images/promo.jpg
+/lib/generated/prisma
+
+/lib/generated/prisma

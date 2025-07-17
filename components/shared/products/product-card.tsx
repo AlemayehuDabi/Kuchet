@@ -1,17 +1,12 @@
-import { SampleDataType } from '@/db/sample-data';
 import React from 'react';
 
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { Product } from '@/types';
 
-interface ProductListProps {
-  product: SampleDataType;
-  limit: number;
-}
-
-export function ProductCard({ product }: ProductListProps) {
+export default function ProductCard({ product }: { product: Product }) {
   return (
     <Card className="dark:bg-white">
       <CardHeader>
@@ -30,9 +25,7 @@ export function ProductCard({ product }: ProductListProps) {
         <div className="flex flex-col gap-2 dark:text-black">
           <h2 className="text-xl font-semibold">{product.name}</h2>
           <div className="flex justify-between items-center">
-            <p className="text-gray-600 text-lg ">
-              ${product.price.toFixed(2)}
-            </p>
+            <p className="text-gray-600 text-lg ">${product.price}</p>
             <p className="text-sm text-gray-500 ">
               Rating: {product.rating} ({product.numReviews} reviews)
             </p>

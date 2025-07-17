@@ -1,27 +1,30 @@
-import sampleData, { SampleDataType } from '@/db/sample-data';
-import { ProductCard } from './product-card';
+import React from 'react';
+import ProductCard from './product-card';
+import { Product } from '@/types';
 
-export function ProductList() {
-  const productsToDisplay = sampleData.products || [];
-
-  const limit = 3;
-
-  const limitedProductToDisplay = limit
-    ? productsToDisplay.slice(0, limit)
-    : [];
+export async function ProductList({
+  data,
+  title,
+  limit,
+}: {
+  data: Product[];
+  title: String;
+  limit: number;
+}) {
+  const limitedData = limit ? data.slice(0, limit) : data;
   return (
-    <div>
-      {limitedProductToDisplay.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {limitedProductToDisplay.map((product: SampleDataType) => (
-            // Ensure product.slug is unique and stable for keys
-            <ProductCard product={product} key={product.slug} limit={4} />
+    <div className="my-10">
+      <h2 className="h2-bold mb-4">{title}</h2>
+      {data.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {limitedData.map((product: Product) => (
+            <ProductCard key={product.slug} product={product} />
           ))}
         </div>
       ) : (
-        <p className="text-gray-500 text-lg">
-          No new products available at the moment.
-        </p>
+        <div>
+          <p>No products found</p>
+        </div>
       )}
     </div>
   );
