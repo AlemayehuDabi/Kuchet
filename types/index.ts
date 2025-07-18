@@ -3,8 +3,8 @@ import { z } from 'zod';
 
 // product type
 export type Product = z.infer<typeof insertProductSchema> & {
-  id: number;
-  rating: number;
+  id: string;
+  rating: string;
   numReviews: number;
   createdAt: Date;
 };

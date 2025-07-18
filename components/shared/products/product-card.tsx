@@ -5,12 +5,13 @@ import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Product } from '@/types';
+import ProductPrice from './product-price';
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
     <Card className="dark:bg-white">
       <CardHeader>
-        <Link href={`${product.slug}`}>
+        <Link href={`product/${product.slug}`}>
           <Image
             src={product.images[0]} // Displaying the first image
             alt={product.name}
@@ -25,7 +26,8 @@ export default function ProductCard({ product }: { product: Product }) {
         <div className="flex flex-col gap-2 dark:text-black">
           <h2 className="text-xl font-semibold">{product.name}</h2>
           <div className="flex justify-between items-center">
-            <p className="text-gray-600 text-lg ">${product.price}</p>
+            {/* <p className="text-gray-600 text-lg ">${product.price}</p> */}
+            <ProductPrice value={Number(product.price)} />
             <p className="text-sm text-gray-500 ">
               Rating: {product.rating} ({product.numReviews} reviews)
             </p>
