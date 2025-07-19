@@ -1,3 +1,5 @@
+import { hashSync } from 'bcrypt-ts-edge';
+
 export type SampleDataType = {
   name: string;
   slug: string;
@@ -14,6 +16,19 @@ export type SampleDataType = {
 };
 
 const sampleData = {
+  users: [
+    {
+      name: 'user',
+      email: 'user@gmail.com',
+      password: hashSync('12345678', 10),
+    },
+    {
+      name: 'admin',
+      email: 'admin@gmail.com',
+      password: hashSync('12345678', 10),
+    },
+  ],
+
   products: [
     {
       name: 'Polo Sporting',
