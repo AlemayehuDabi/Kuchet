@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 
-import useTheme from 'next-theme';
+import { useTheme } from 'next-themes';
 import { ScaleLoader } from 'react-spinners'; // Import desired loaders
 
 export default function Loading() {

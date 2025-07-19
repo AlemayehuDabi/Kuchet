@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuCheckboxItem,
 } from './ui/dropdown-menu';
-import useTheme from 'next-theme';
+import { useTheme } from 'next-themes';
 import { Moon, Sun, SunMoon } from 'lucide-react';
 import { Button } from './ui/button';
 

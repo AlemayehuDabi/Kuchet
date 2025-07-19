@@ -2,7 +2,7 @@
 'use client'; // This component MUST be a Client Component
 
 import * as React from 'react';
-import { ThemeProvider as NextThemesProvider } from 'next-theme';
+import { ThemeProvider as NextThemesProvider } from 'next-themes';
 
 // Correct way to get the props type for NextThemesProvider
 type MyThemeProviderProps = React.ComponentProps<typeof NextThemesProvider>;
