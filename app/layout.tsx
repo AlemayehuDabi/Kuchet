@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { APP_TITLE } from '@/lib/constants';
 import { ThemeProvider } from '@/components/theme-provider';
+import ThemeWrapper from '@/components/ThemeWraper';
 
 const inter = Inter({
   // variable: '--font-geist-sans',
@@ -33,14 +34,7 @@ export default function RootLayout({
         className={`${inter.className}  antialiased`}
         suppressHydrationWarning
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          // enableSystem
-          // disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <ThemeWrapper>{children}</ThemeWrapper>
       </body>
     </html>
   );
