@@ -25,3 +25,8 @@ export const insertProductSchema = z.object({
   isFeatured: z.boolean(),
   banner: z.string().nullable(),
 });
+
+export const signInSchemaWithCredintial = z.object({
+  email: z.email('invalid email'),
+  password: z.string().min(6, 'minmum value must be 6'),
+});

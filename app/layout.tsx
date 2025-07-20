@@ -28,11 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.className}  antialiased`}
-        suppressHydrationWarning
-      >
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.className}  antialiased`}>
         <ThemeWrapper>{children}</ThemeWrapper>
       </body>
     </html>
