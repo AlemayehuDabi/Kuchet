@@ -3,12 +3,35 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { SignInWithCredintial } from '@/lib/actions/user.action';
 import { signInDefaultValues } from '@/lib/constants';
 import Link from 'next/link';
+import { useActionState } from 'react';
+import { useFormStatus } from 'react-dom';
+import { SyncLoader } from 'react-spinners';
+import { useSearchParams } from 'next/navigation';
 
 const CredentialsSignInForm = () => {
+  const [data, action] = useActionState(SignInWithCredintial, {
+    success: false,
+    message: '',
+  });
+
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '';
+
+  const SignInButton = () => {
+    const { pending } = useFormStatus();
+
+    return (
+      <Button disabled={pending} className="w-full">
+        {pending ? <SyncLoader color="white" /> : 'Sign In'}
+      </Button>
+    );
+  };
+
   return (
-    <form>
+    <form action={action}>
       <input type="hidden" name="callbackUrl" />
       <div className="space-y-6">
         <div>
@@ -34,10 +57,12 @@ const CredentialsSignInForm = () => {
           />
         </div>
         <div>
-          {/* button */}
-
-          <Button className="w-full bg-amber-800">Sign In</Button>
+          <SignInButton />
         </div>
+
+        {data && !data.success && (
+          <div className="text-center text-destructive">{data.message}</div>
+        )}
 
         <div className="text-sm text-center text-muted-foreground">
           Don&apos;t have an account?{' '}
