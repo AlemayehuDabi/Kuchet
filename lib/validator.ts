@@ -28,21 +28,21 @@ export const insertProductSchema = z.object({
 
 // sign in schema
 export const signInSchemaWithCredintial = z.object({
-  email: z.email('invalid email'),
-  password: z.string().min(6, 'minimum value for password must be 6'),
+  email: z.string().email('Invalid email address'),
+  password: z.string().min(6, 'Password must be at least 6 characters'),
 });
 
 // sign-up schema
 export const signUpSchemaWithCredintial = z
   .object({
-    name: z.string().min(3, 'minimum value for name must be 3'),
-    email: z.email('invalid email'),
-    password: z.string().min(6, 'minimum value for password must be 6'),
+    name: z.string().min(3, 'Name must be at least 3 characters'),
+    email: z.string().email('Invalid email address'),
+    password: z.string().min(6, 'Password must be at least 6 characters'),
     confirmPassword: z
       .string()
-      .min(6, 'minimum value for confirm password must be 6'),
+      .min(6, 'Confirm password must be at least 6 characters'),
   })
   .refine((data) => data.password === data.confirmPassword, {
-    message: 'Passwords must match',
+    message: "Passwords don't match",
     path: ['confirmPassword'],
   });

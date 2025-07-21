@@ -38,10 +38,7 @@ export const SignOut = async () => {
 };
 
 //sign up
-export const SignUpWithCredintial = async (
-  prevState: unknown,
-  formData: FormData
-) => {
+export const SignUp = async (prevState: unknown, formData: FormData) => {
   try {
     const user = signUpSchemaWithCredintial.parse({
       name: formData.get('name'),
