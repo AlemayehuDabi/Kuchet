@@ -26,7 +26,23 @@ export const insertProductSchema = z.object({
   banner: z.string().nullable(),
 });
 
+// sign in schema
 export const signInSchemaWithCredintial = z.object({
   email: z.email('invalid email'),
-  password: z.string().min(6, 'minmum value must be 6'),
+  password: z.string().min(6, 'minimum value for password must be 6'),
 });
+
+// sign-up schema
+export const signUpSchemaWithCredintial = z
+  .object({
+    name: z.string().min(3, 'minimum value for name must be 3'),
+    email: z.email('invalid email'),
+    password: z.string().min(6, 'minimum value for password must be 6'),
+    confirmPassword: z
+      .string()
+      .min(6, 'minimum value for confirm password must be 6'),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: 'Passwords must match',
+    path: ['confirmPassword'],
+  });
