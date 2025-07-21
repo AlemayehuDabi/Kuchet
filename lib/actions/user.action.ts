@@ -8,6 +8,7 @@ import {
 import { isRedirectError } from 'next/dist/client/components/redirect-error';
 import { hashSync } from 'bcrypt-ts-edge';
 import { prisma } from '@/db/prisma';
+import { formatError } from '../utils';
 
 // sign-in
 export const SignInWithCredintial = async (
@@ -28,7 +29,7 @@ export const SignInWithCredintial = async (
       throw error;
     }
 
-    return { success: false, message: 'invalid credintial' };
+    return { success: false, message: 'Invalid email or password' };
   }
 };
 
@@ -70,6 +71,6 @@ export const SignUp = async (prevState: unknown, formData: FormData) => {
       throw error;
     }
 
-    return { success: false, message: 'user can NOT register' };
+    return { success: false, message: formatError(error) };
   }
 };
